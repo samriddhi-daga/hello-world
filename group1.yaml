@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: test-group
+  description: The backstage sub-department
+spec:
+  type: test
+  profile:
+    displayName: Backstage
+    email: backstage@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundColor=ffdfbf
+  parent: infrastructure
+  children: ['samriddhi.daga@harness.io']
