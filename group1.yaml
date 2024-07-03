@@ -1,13 +1,21 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
+  namespace: default
+  annotations:
+    backstage.io/managed-by-location: group-https://app.harness.io/
+    backstage.io/managed-by-origin-location: group-https://app.harness.io/
   name: test-group
-  description: The backstage sub-department
+  title: Test Group
+relations:
+  - type: hasMember
+    targetRef: user:default/samriddhi.daga
+    target:
+      kind: user
+      namespace: default
+      name: samriddhi.daga
 spec:
-  type: test
-  profile:
-    displayName: Backstage
-    email: backstage@example.com
-    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundColor=ffdfbf
-  parent: infrastructure
-  children: ['samriddhi.daga@harness.io']
+  type: team
+  children: []
+  members:
+    - samriddhi.daga
