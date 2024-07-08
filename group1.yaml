@@ -6,7 +6,7 @@ metadata:
     backstage.io/managed-by-location: group-https://app.harness.io/
     backstage.io/managed-by-origin-location: group-https://app.harness.io/
   name: harness_account_all_users
-  title: All Account User
+  title: All Account Userss
 spec:
   type: team
   children: []
