@@ -5,8 +5,8 @@ metadata:
   annotations:
     backstage.io/managed-by-location: group-https://app.harness.io/
     backstage.io/managed-by-origin-location: group-https://app.harness.io/
-  name: harness_account_all_user
-  title: All Account Userss
+  name: testgroup
+  title: Test Group
 spec:
   type: team
   children: []
