@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: default
+  annotations:
+    backstage.io/managed-by-location: group-https://app.harness.io/
+    backstage.io/managed-by-origin-location: group-https://app.harness.io/
+  name: user_group_ingestion
+  title: User_group_ingestion_backstage
+spec:
+  type: team
+  children: []
+  members:
+    - samriddhi.daga
