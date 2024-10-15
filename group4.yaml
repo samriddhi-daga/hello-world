@@ -5,8 +5,8 @@ metadata:
   annotations:
     backstage.io/managed-by-location: group-https://app.harness.io/
     backstage.io/managed-by-origin-location: group-https://app.harness.io/
-  name: test_long_group
-  title: Some long group name
+  name: test_long_group_test_long_group_test_long_group_test_long_group_test_long_group
+  title: Test long group name
 spec:
   type: team
   children: []
