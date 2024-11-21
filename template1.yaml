@@ -9,8 +9,8 @@ yaml: |
       backstage.io/view-url: https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/catalog_template.yaml
       backstage.io/edit-url: https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/catalog_template.yaml
       backstage.io/source-location: url:https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/
-    name: harness-pilot-light-dummy
-    title: Deploy Harness Solutions Factory
+    name: harness-pilot-test
+    title: Deploy Harness Solutions Factory Test
     description: |
       The Pilot Light for the Harness Solutions Factory will create new Harness resources
       required to standup and run the Harness Solutions Factory. The outcome of this execution
