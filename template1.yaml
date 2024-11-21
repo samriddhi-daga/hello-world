@@ -26,13 +26,6 @@ metadata:
     - harness
     - hidden
     - management
-relations:
-  - type: ownedBy
-    targetRef: group:default/implementationengineering
-    target:
-      kind: group
-      namespace: default
-      name: implementationengineering
 spec:
   type: solutions-factory
   owner: group:default/implementationengineering
