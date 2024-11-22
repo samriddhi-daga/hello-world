@@ -1,0 +1,138 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  namespace: default
+  name: workflow-sync-ui-test
+  title: Deploy Harness Solutions Factory Test
+  description: |
+    The Pilot Light for the Harness Solutions Factory will create new Harness resources
+    required to standup and run the Harness Solutions Factory. The outcome of this execution
+    will lead to a new pipeline which once provisioned will deploy the full solutions
+    factory.
+  tags:
+    - solutions-factory
+    - harness
+    - hidden
+    - management
+spec:
+  type: solutions-factory
+  owner: group:default/implementationengineering
+  parameters:
+    - title: Deployment Account Details
+      required:
+        - deployment_account_id
+        - deployment_api_key
+      properties:
+        deployment_account_id:
+          title: Deployment Account Number
+          description: Enter the Harness account to which the Pilot Light should be deployed
+          type: string
+        deployment_api_key:
+          title: Deployment Access Token
+          description: Enter the Harness account API key for Pilot Light deployment
+          type: string
+          ui:widget: password
+    - title: Solutions Factory Connection
+      properties:
+        solutions_factory_details:
+          title: Solutions Factory Details
+          type: object
+          description: |
+            ---
+            Harness URL: <+variable.account.solutions_factory_endpoint>
+            Harness Account: vpCkHKsDSxK9_KYfjCTMKA
+            Solutions Factory Org: <+variable.account.solutions_factory_org>
+            Solutions Factory Project: <+variable.account.solutions_factory_project>
+          properties:
+            harness_account_url:
+              type: string
+              default: "<+variable.account.solutions_factory_endpoint>"
+            harness_account_id:
+              type: string
+              default: "vpCkHKsDSxK9_KYfjCTMKA"
+            harness_org_id:
+              type: string
+              default: "<+variable.account.solutions_factory_org>"
+            harness_project_id:
+              type: string
+              default: "<+variable.account.solutions_factory_project>"
+            harness_remote_project_id:
+              type: string
+              default: "Factory_Deployments"
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+  steps:
+    - id: register_secret
+      name: Register API Key
+      action: harness:create-secret
+      input:
+        orgId: ${{ parameters.solutions_factory_details.harness_org_id }}
+        projectId: ${{ parameters.solutions_factory_details.harness_remote_project_id }}
+        secretValue: ${{ parameters.deployment_api_key }}
+        apikey: ${{ parameters.token }}
+    - id: configure_workspace
+      name: Configuring Harness Workspace
+      action: trigger:harness-custom-pipeline
+      input:
+        url: "${{ parameters.solutions_factory_details.harness_account_url }}/ng/account/${{ parameters.solutions_factory_details.harness_account_id }}/all/orgs/${{ parameters.solutions_factory_details.harness_org_id }}/projects/${{ parameters.solutions_factory_details.harness_project_id }}/pipelines/Create_and_Manage_IACM_Workspaces/pipeline-studio?storeType=INLINE"
+        inputset:
+          GIT_REPOSITORY_PATH: pilot-light
+          GIT_REPOSITORY_BRANCH: main
+          RESOURCE_NAME: ${{ parameters.deployment_account_id }}
+          RESOURCE_OWNER: group:default/ImplementationEngineering
+          RESOURCE_VARS:
+            harness_platform_account: ${{ parameters.deployment_account_id }}
+            store_backend: false
+            display_output: false
+          RESOURCE_VARS_SECRETS:
+            harness_platform_key: ${{ steps.register_secret.output.secretId }}
+          RESOURCE_VARS_ENVS: {}
+          RESOURCE_VARS_ENVS_SECRET: {}
+          INCLUDE_HARNESS_ENVS: "true"
+          WORKSPACE_PROJECT: ${{ parameters.solutions_factory_details.harness_remote_project_id }}
+        apikey: ${{ parameters.token }}
+        showOutputVariables: true
+    - id: provision_workspace
+      name: Provisioning your Harness Workspace
+      action: trigger:harness-custom-pipeline
+      input:
+        url: "${{ parameters.solutions_factory_details.harness_account_url }}/ng/account/${{ parameters.solutions_factory_details.harness_account_id }}/all/orgs/${{ parameters.solutions_factory_details.harness_org_id }}/projects/${{ parameters.solutions_factory_details.harness_remote_project_id }}/pipelines/Remote_Manage_Pilot_Light/pipeline-studio?storeType=INLINE"
+        inputset:
+          workspace: ${{ parameters.deployment_account_id }}
+          remote_account_id: ${{ parameters.deployment_account_id }}
+          remote_api_key_ref: ${{ steps.register_secret.output.secretId }}
+        apikey: ${{ parameters.token }}
+        showOutputVariables: true
+    - id: remove_secret
+      name: Remove API Key
+      action: harness:delete-secret
+      input:
+        orgId: ${{ parameters.solutions_factory_details.harness_org_id }}
+        projectId: ${{ parameters.solutions_factory_details.harness_remote_project_id }}
+        secretId: ${{ steps.register_secret.output.secretId }}
+        apikey: ${{ parameters.token }}
+  output:
+    links:
+      - title: API Token Management
+        url: "${{ parameters.solutions_factory_details.harness_account_url }}/ng/account/${{ parameters.deployment_account_id }}/all/orgs/Harness_Platform_Management/settings/secrets/HARNESS_PLATFORM_KEY/overview"
+      - title: Verify Cloud Connector
+        url: "${{ parameters.solutions_factory_details.harness_account_url }}/ng/account/${{ parameters.deployment_account_id }}/all/orgs/Harness_Platform_Management/projects/Solutions_Factory/settings/connectors/harness_platform_management_repo"
+      - title: Adjust Pilot Light
+        url: "${{ parameters.solutions_factory_details.harness_account_url }}/ng/account/${{ parameters.deployment_account_id }}/all/iacm/orgs/Harness_Platform_Management/projects/Solutions_Factory/workspaces/harness-pilot-light/variables"
+      - title: Deploy Solutions Factory
+        url: "${{ parameters.solutions_factory_details.harness_account_url }}/ng/account/${{ parameters.deployment_account_id }}/all/orgs/Harness_Platform_Management/projects/Solutions_Factory/deployments"
+    text:
+      - title: Next Steps
+        content: |
+          ## Welcome to the Harness Platform Management
+          Upon successful execution of this Terraform template, finalize the following steps:
+
+          **Step 1)** Manage your stored API Key via the _API Token Management_ link.
+
+          **Step 2)** Verify the provisioned Cloud Build connector (_Verify Cloud Connector_ link).
+
+          **Step 3)** Adjust Pilot Light settings (_Adjust Pilot Light_ link).
+
+          **Step 4)** Launch the Factory (_Deploy Solutions Factory_ link).
