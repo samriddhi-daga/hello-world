@@ -15,7 +15,7 @@ metadata:
     - hidden
     - management
 spec:
-  type: solutions-factory
+  type: service
   owner: group:default/implementationengineering
   parameters:
     - title: Deployment Account Details
