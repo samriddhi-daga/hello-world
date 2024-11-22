@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   namespace: default
-  name: workflow-sync-ui-test
+  name: workflow-sync-ui-test-validation
   title: Deploy Harness Solutions Factory Test
   description: |
     The Pilot Light for the Harness Solutions Factory will create new Harness resources
