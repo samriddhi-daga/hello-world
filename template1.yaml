@@ -2,7 +2,7 @@ kind: Template
 apiVersion: scaffolder.backstage.io/v1beta3
 metadata:
   namespace: default
-  name: harness-pilot-test
+  name: harness-pilot-test-wrong-group
   title: Deploy Harness Solutions Factory Test
   description: |
     The Pilot Light for the Harness Solutions Factory will create new Harness resources
