@@ -22,7 +22,6 @@ metadata:
     - management
 spec:
   type: solutions-factory
-  owner: samriddhi.da@harness.io
   parameters:
     - title: Deployment Account Details
       required:
