@@ -2,14 +2,8 @@ kind: Template
 apiVersion: scaffolder.backstage.io/v1beta3
 metadata:
   namespace: default
-  annotations:
-    backstage.io/managed-by-location: url:https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/catalog_template.yaml
-    backstage.io/managed-by-origin-location: url:https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/catalog_template.yaml
-    backstage.io/view-url: https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/catalog_template.yaml
-    backstage.io/edit-url: https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/catalog_template.yaml
-    backstage.io/source-location: url:https://app.harness.io/ng/account/vpCkHKsDSxK9_KYfjCTMKA/module/code/orgs/default/projects/IDP_UI/repos/python-pipeline-samples/files/main/~/
-  name: harness-pilot-workflow-sync-test
-  title: Deploy Harness Solutions Factory Workflow Sync Test
+  name: harness-pilot-test-right-group
+  title: Deploy Harness Solutions Factory Test
   description: |
     The Pilot Light for the Harness Solutions Factory will create new Harness resources
     required to standup and run the Harness Solutions Factory. The outcome of this execution
@@ -28,7 +22,7 @@ metadata:
     - management
 spec:
   type: solutions-factory
-  owner: group:default/implementationengineering
+  owner: group:default/test_group
   parameters:
     - title: Deployment Account Details
       required:
