@@ -10,7 +10,7 @@ metadata:
     - hidden
     - management
 spec:
-  type: service
+  type: solutions-factory
   owner: samriddhi.daga@harness.io
   parameters:
     - title: Deployment Account Details
