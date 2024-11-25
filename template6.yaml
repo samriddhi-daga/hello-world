@@ -1,19 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: harness-pilot-test
+  name: harness-pilot-test-final
   title: Deploy Harness Solutions Factory Test
-  description: |
-    The Pilot Light for the Harness Solutions Factory will create new Harness resources
-    required to standup and run the Harness Solutions Factory. The outcome of this execution
-    will lead to a new pipeline which once provisioned will deploy the full solutions
-    factory. This template will build and deliver the following:
-      - A new organization
-      - A new project called `Solutions Factory`
-      - A new Harness Service Account with Account level permissions
-      - A new Harness Code Repository connector
-      - A new Harness IACM workspace called `Harness Solutions Factory` including a pipeline `Deploy Solutions Factory` in the project `Solutions Factory`
-      - A new Harness IACM workspace called `Harness Pilot Light` including a pipeline `Manage Pilot Light` in the project `Solutions Factory`
+  description: Smaller Description
   tags:
     - solutions-factory
     - harness
@@ -21,7 +11,7 @@ metadata:
     - management
 spec:
   type: service
-  owner: group:default/implementationengineering
+  owner: samriddhi.daga@harness.io
   parameters:
     - title: Deployment Account Details
       required:
