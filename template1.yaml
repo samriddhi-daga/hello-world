@@ -21,7 +21,6 @@ metadata:
     - hidden
     - management
 spec:
-  owner: samriddhi.daga@harness.io
   type: solutions-factory
   parameters:
     - title: Deployment Account Details
