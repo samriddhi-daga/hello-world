@@ -20,6 +20,7 @@ metadata:
     - harness
     - management
 spec:
+  owner: test
   type: solutions-factory
   parameters:
     - title: Deployment Account Details
