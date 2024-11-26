@@ -1,4 +1,4 @@
-835991kind: Template
+kind: Template
 apiVersion: scaffolder.backstage.io/v1beta3
 metadata:
   namespace: default
