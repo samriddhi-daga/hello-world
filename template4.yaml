@@ -8,7 +8,7 @@ metadata:
     - pipeline
     - harness
 spec:
-  owner: aashrit.garg@harness.io
+  owner: samriddhi.daga@harness.io
   type: service
   parameters:
     properties:
