@@ -18,7 +18,6 @@ metadata:
   tags:
     - solutions-factory
     - harness
-    - hidden
     - management
 spec:
   type: solutions-factory
