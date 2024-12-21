@@ -9,6 +9,7 @@ metadata:
     - harness
 spec:
   owner: samriddhi.daga@harness.io
+  lifecycle: production
   type: service
   parameters:
     properties:
